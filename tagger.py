@@ -97,9 +97,8 @@ def pos_tag(tokens, mmwe=True):
 
     return tags
 
-reg_exp = { "nh":"([01]?[0-9]|2[0-3]):[0-5][0-9]",
-            "int": "\¿",
-            "nh": "([01]?[0-9]|2[0-4])",
+reg_exp = { "h":"pm|p\.m\.|am|a\.m\.",
+            "INT": "INT"
           }
 
 def find_tag(word):
@@ -121,3 +120,10 @@ def batch_pos_tag(sentences, mmwe=True):
 	tagger = cesstag(mmwe)
 	return [tagger.uni.tag(s) for s in sentences]
 
+
+def normalize(sent):
+    import re
+    dates = re.match("([0-9]{1,2})[-/:]([0-9]{1,2})[-/:]([0-9]{4})", sent)
+
+    for d in dates:
+        print d
