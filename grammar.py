@@ -22,17 +22,17 @@ for i in range(100):
 
 #hours
 for i in range(12):
-    objects_and_sites += "Hh[hour=%d] -> NUM[num=%d] 'pm'\n"%(i*2, i)
+    objects_and_sites += "Hh[hour=%d] -> NUM[num=%d] 'pm'\n"%(i+12, i)
 
-    objects_and_sites += "Hh[hour=%d] -> NUM[num=%d] 'p.m.'\n"%(i*2, i)
+    objects_and_sites += "Hh[hour=%d] -> NUM[num=%d] 'p.m.'\n"%(i+12, i)
 
     objects_and_sites += "Hh[hour=%d] -> NUM[num=%d] 'am'\n"%(i, i)
 
     objects_and_sites += "Hh[hour=%d] -> NUM[num=%d] 'a.m.'\n"%(i, i)
 
-    objects_and_sites += "Hm[hour=%d, minute=?m] -> NUM[num=%d] NUM[num=?m] 'pm'\n"%(i*2, i)
+    objects_and_sites += "Hm[hour=%d, minute=?m] -> NUM[num=%d] NUM[num=?m] 'pm'\n"%(i+12, i)
 
-    objects_and_sites += "Hm[hour=%d, minute=?m] -> NUM[num=%d] NUM[num=?m] 'p.m.'\n"%(i*2, i)
+    objects_and_sites += "Hm[hour=%d, minute=?m] -> NUM[num=%d] NUM[num=?m] 'p.m.'\n"%(i+12, i)
 
     objects_and_sites += "Hm[hour=%d, minute=?m] -> NUM[num=%d] NUM[num=?m] 'am'\n"%(i, i)
 

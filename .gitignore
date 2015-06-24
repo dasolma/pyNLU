@@ -47,6 +47,7 @@ crashlytics-build.properties
 
 #classifiers
 *.pyc
+*.ps
 data/
 README.md
 

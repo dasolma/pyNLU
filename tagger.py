@@ -92,8 +92,8 @@ class conll2002tag():
 
 def pos_tag(tokens, mmwe=True):
     tagger = cesstag(mmwe)
+    tags = tagger.uni.tag(tokens)
     tags = [(w,find_tag(w) if t is None else t) for w,t in tagger.uni.tag(tokens)]
-
 
     return tags
 
@@ -113,7 +113,6 @@ def find_tag(word):
         return tag
 
     return tag
-
 
 
 def batch_pos_tag(sentences, mmwe=True):

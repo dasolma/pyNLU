@@ -1,9 +1,7 @@
 # pyNLU
 
-we will consider the following ADT for the representation of information:
+This is a toy example of **spanish** Natural Language Understanding (NLU) application. For that, we will consider the following ADT for the representation of information:
 
-### DEVICE
-- deviceID (provides a unique identifier for the device)
 - deviceReference (references can identify descriptors. We will used the following: light, owen, heating, door, ...)
 - devicePlace (identifies the location in the environment: for instance: kitchen, bedroom, ...)
 - deviceType (devices are classified taking into account their capabilities)
@@ -21,7 +19,6 @@ Using this framework, we can define for instance an environment with the followi
 
 Device
 
-    deviceId: 1
     deviceReference: light
     devicePlace: kitchen
     deviceType: ON/OFF
@@ -29,7 +26,6 @@ Device
 
 Device
 
-    deviceId: 2
     deviceReference: airConditioning
     devicePlace: diningRoom
     deviceType: Range
@@ -84,3 +80,51 @@ That is, we need to incorporate an additional parameter or feature that will ide
 
 
 In this last case we haven't identified the place of the device, so it is unespecified in the FS. Additionally, the data structures for dates can contain the features minute, hour, day, month, year. We will instantiate as much information as the input incorporates.
+
+
+##Methodology
+
+To perform this task three feature based grammars has been built. One grammar to parse orders, one to parse questions and the last one to parse configurations or schedules. Each one of this grammar are defined in **grammar.py**.
+
+Before to apply the feature based grammar, the sentence is tokenized and tagged. For tagged the grammar a tagger is trained using the cess corpus. For instance:
+
+    [('Enciende', None), ('la', u'da0fs0'), ('luz', u'ncfs000'), ('de', u'sps00'), ('la', u'da0fs0'), ('cocina', u'ncfs000')]
+
+Sometimes, the tagger don't work well and some tokens are not tagged. In that cases, the word is searched in the online rae dictionary (*www.rae.es*) and the most common type of word is taken. 
+
+    [('Enciende', 'v'), ('la', u'da0fs0'), ('luz', u'ncfs000'), ('de', u'sps00'), ('la', u'da0fs0'), ('cocina', u'ncfs000')]
+
+Next all words are tagged, discards irrelevants words (determinants, adjectives, prepositions, ...) and the rest of the tokens are passed to the feature based grammars.
+
+    ['enciende', 'luz', 'cocina']
+
+##Results
+
+¿ Como está la luz del dormitorio ?
+
+![arbol 1](tree1.png)
+
+Enciende la luz de la cocina
+
+![arbol 1](tree2.png)
+
+Configura el aire acondicionado a 26 grados a las 6 pm hasta las 7:20 am
+
+![arbol 1](tree3.png)
+
+Apaga el aire acondicionado
+
+![arbol 1](tree4.png)
+
+Apaga el horno
+
+![arbol 1](tree5.png)
+
+¿ Como está la puerta de la cocina ?
+
+![arbol 1](tree6.png)
+
+Enciende el aire acondicionado
+
+![arbol 1](tree7.png)
+

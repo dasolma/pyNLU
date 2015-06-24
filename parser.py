@@ -26,34 +26,28 @@ def parse(text):
         #NPChunker.parse( pos_tag(test_sent) ).draw()
         tags =  pos_tag(s)
 
-        print tags
         relevant_words = [ w.lower().strip() for w, t in tags if t[0] in "inavZh"]
 
-        print relevant_words
         try:
             for t in  parser_orden.parse(relevant_words):
-                print t
+                trees.append(t)
         except:
             pass
 
         try:
             for t in  parser_schedule.parse(relevant_words):
-                print t
+                trees.append(t)
         except:
             pass
 
         relevant_words = [ w.lower().strip() for w, t in tags if t[0] in "IinaZ"]
 
-        print relevant_words
 
         try:
             for t in  parser_question.parse(relevant_words):
-                print t
+                trees.append(t)
         except:
             pass
-
-
-        #print relevant_words
 
 
     return trees
